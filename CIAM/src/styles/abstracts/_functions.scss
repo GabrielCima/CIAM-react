@@ -1,0 +1,25 @@
+// Función para obtener spacing
+@function spacing($value) {
+  @if map-has-key($spacings, $value) {
+    @return map-get($spacings, $value);
+  } @else {
+    @warn "Spacing `#{$value}` no encontrado en $spacings";
+    @return $value;
+  }
+}
+
+// Función para obtener color
+@function color($key, $variant: 'base') {
+  @if map-has-key($colors, $key) {
+    $color-map: map-get($colors, $key);
+    @if map-has-key($color-map, $variant) {
+      @return map-get($color-map, $variant);
+    } @else {
+      @warn "Variante `#{$variant}` no encontrada para color `#{$key}`";
+      @return map-get($color-map, 'base');
+    }
+  } @else {
+    @warn "Color `#{$key}` no encontrado en $colors";
+    @return #000;
+  }
+}

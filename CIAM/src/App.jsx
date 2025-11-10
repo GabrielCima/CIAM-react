@@ -1,33 +1,45 @@
-import { useState } from 'react'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import authService from './services/authService';
+import './styles/main.scss';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  const checkAuth = () => {
+    const authenticated = authService.isAuthenticated();
+    setIsAuthenticated(authenticated);
+  };
+
+  const handleLoginSuccess = (userData) => {
+    setIsAuthenticated(true);
+    // Puedes redirigir a dashboard o página principal
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app">
+      <Header />
+      
+      <main className="main">
+        {!isAuthenticated ? (
+          <Login onLoginSuccess={handleLoginSuccess} />
+        ) : (
+          <div className="container">
+            <div className="dashboard">
+              <h1>Bienvenido al Sistema</h1>
+              <p>Has iniciado sesión correctamente.</p>
+              {/* Aquí irían los módulos/secciones de la API */}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

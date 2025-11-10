@@ -1,0 +1,77 @@
+// Tipografía base
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: 1.6;
+  color: $color-gray-900;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: spacing(3);
+}
+
+h1 {
+  font-size: 2.5rem;
+  
+  @include respond-to('md') {
+    font-size: 3rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  
+  @include respond-to('md') {
+    font-size: 2.5rem;
+  }
+}
+
+h3 {
+  font-size: 1.75rem;
+  
+  @include respond-to('md') {
+    font-size: 2rem;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+// Utilities
+.text {
+  &--center { text-align: center; }
+  &--left { text-align: left; }
+  &--right { text-align: right; }
+  &--justify { text-align: justify; }
+  
+  &--uppercase { text-transform: uppercase; }
+  &--lowercase { text-transform: lowercase; }
+  &--capitalize { text-transform: capitalize; }
+  
+  &--bold { font-weight: $font-weight-bold; }
+  &--medium { font-weight: $font-weight-medium; }
+  &--normal { font-weight: $font-weight-normal; }
+  
+  &--truncate {
+    @include truncate;
+  }
+}
+
+// Texto responsivo
+.text-responsive {
+  @include responsive-font(1rem, 1.25rem);
+}

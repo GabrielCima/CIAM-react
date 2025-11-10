@@ -1,0 +1,22 @@
+// Tema alto contraste
+.theme-high-contrast {
+  --color-primary: #ffff00;
+  --color-secondary: #00ffff;
+  --color-success: #00ff00;
+  --color-warning: #ffa500;
+  --color-error: #ff0000;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --text-primary: #ffffff;
+  --text-secondary: #ffff00;
+  --border-color: #ffffff;
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  
+  * {
+    border-color: var(--border-color) !important;
+  }
+}

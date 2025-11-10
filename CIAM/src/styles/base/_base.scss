@@ -1,0 +1,42 @@
+// Estilos base para elementos comunes
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $color-white;
+  color: $color-gray-900;
+}
+
+// Focus styles
+:focus {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Selection
+::selection {
+  background-color: rgba($color-primary, 0.2);
+}
+
+// Scrollbar personalizada (opcional)
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-gray-400;
+  border-radius: $border-radius;
+  
+  &:hover {
+    background: $color-gray-500;
+  }
+}

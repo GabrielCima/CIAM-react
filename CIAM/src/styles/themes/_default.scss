@@ -1,0 +1,15 @@
+// Tema por defecto (ya definido en variables)
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-success: #{$color-success};
+  --color-warning: #{$color-warning};
+  --color-error: #{$color-error};
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+  --bg-primary: #{$color-white};
+  --bg-secondary: #{$color-gray-100};
+  --text-primary: #{$color-gray-900};
+  --text-secondary: #{$color-gray-600};
+  --border-color: #{$color-gray-300};
+}

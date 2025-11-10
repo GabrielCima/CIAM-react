@@ -1,0 +1,101 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 ($grid-margin-mobile / 2); // 10px
+  
+  // Usamos tu mapa de max-widths
+  @each $breakpoint, $container-max-width in $grid-container-max-widths {
+    @include respond-to($breakpoint) {
+      $current-margin: if($breakpoint == 'sm', $grid-margin-mobile, $grid-margin);
+      max-width: $container-max-width;
+      padding: 0 ($current-margin / 2); // 30px o 10px
+    }
+  }
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 ($grid-margin-mobile / 2);
+  
+  @include respond-to('md') {
+    padding: 0 ($grid-margin / 2);
+  }
+}
+
+// Row
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-$grid-gutter-mobile / 2); // -8px
+  
+  @include respond-to('md') {
+    margin: 0 (-$grid-gutter / 2); // -12px
+  }
+}
+
+// Columnas base
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    flex: 0 0 auto;
+    width: percentage($i / $grid-columns);
+    padding: 0 ($grid-gutter-mobile / 2); // 8px
+    
+    @include respond-to('md') {
+      padding: 0 ($grid-gutter / 2); // 12px
+    }
+  }
+}
+
+// Columnas auto
+.col {
+  flex: 1 0 0%;
+  padding: 0 ($grid-gutter-mobile / 2);
+  
+  @include respond-to('md') {
+    padding: 0 ($grid-gutter / 2);
+  }
+}
+
+// Columnas responsivas 
+@include respond-to('sm') {
+  @for $i from 1 through $grid-columns {
+    .col-sm-#{$i} {
+      flex: 0 0 auto;
+      width: percentage($i / $grid-columns);
+    }
+  }
+}
+
+@include respond-to('md') {
+  @for $i from 1 through $grid-columns {
+    .col-md-#{$i} {
+      flex: 0 0 auto;
+      width: percentage($i / $grid-columns);
+    }
+  }
+}
+
+@include respond-to('lg') {
+  @for $i from 1 through $grid-columns {
+    .col-lg-#{$i} {
+      flex: 0 0 auto;
+      width: percentage($i / $grid-columns);
+    }
+  }
+}
+
+@include respond-to('xl') {
+  @for $i from 1 through $grid-columns {
+    .col-xl-#{$i} {
+      flex: 0 0 auto;
+      width: percentage($i / $grid-columns);
+    }
+  }
+}
+
+// Utilidades de gap
+.gap-0 { gap: 0; }
+.gap-1 { gap: spacing(1); } // 0.25rem
+.gap-2 { gap: spacing(2); } // 0.5rem  
+.gap-3 { gap: spacing(3); } // 1rem
+.gap-4 { gap: spacing(4); } // 1.5rem

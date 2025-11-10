@@ -1,0 +1,62 @@
+// Utilidades de display
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+.d-none { display: none; }
+
+// Utilidades de flexbox
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; }
+.align-end { align-items: flex-end; }
+
+// Utilidades de spacing
+@each $key, $value in $spacings {
+  .m-#{$key} { margin: $value; }
+  .mt-#{$key} { margin-top: $value; }
+  .mr-#{$key} { margin-right: $value; }
+  .mb-#{$key} { margin-bottom: $value; }
+  .ml-#{$key} { margin-left: $value; }
+  .mx-#{$key} { margin-left: $value; margin-right: $value; }
+  .my-#{$key} { margin-top: $value; margin-bottom: $value; }
+  
+  .p-#{$key} { padding: $value; }
+  .pt-#{$key} { padding-top: $value; }
+  .pr-#{$key} { padding-right: $value; }
+  .pb-#{$key} { padding-bottom: $value; }
+  .pl-#{$key} { padding-left: $value; }
+  .px-#{$key} { padding-left: $value; padding-right: $value; }
+  .py-#{$key} { padding-top: $value; padding-bottom: $value; }
+}
+
+// Utilidades de color
+.text-primary { color: $color-primary; }
+.text-secondary { color: $color-secondary; }
+.text-success { color: $color-success; }
+.text-warning { color: $color-warning; }
+.text-error { color: $color-error; }
+
+.bg-primary { background-color: $color-primary; }
+.bg-secondary { background-color: $color-secondary; }
+.bg-success { background-color: $color-success; }
+.bg-warning { background-color: $color-warning; }
+.bg-error { background-color: $color-error; }
+
+// Utilidades responsivas
+@each $breakpoint, $value in $breakpoints {
+  @if $value > 0 {
+    @include respond-to($breakpoint) {
+      .d-#{$breakpoint}-none { display: none; }
+      .d-#{$breakpoint}-block { display: block; }
+      .d-#{$breakpoint}-flex { display: flex; }
+      .d-#{$breakpoint}-grid { display: grid; }
+    }
+  }
+}

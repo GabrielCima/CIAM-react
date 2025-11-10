@@ -1,0 +1,18 @@
+// Tema oscuro
+.theme-dark {
+  --color-primary: #90caf9;
+  --color-secondary: #f48fb1;
+  --color-success: #81c784;
+  --color-warning: #ffb74d;
+  --color-error: #e57373;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #333333;
+  
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}

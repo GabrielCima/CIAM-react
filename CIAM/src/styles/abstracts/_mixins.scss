@@ -1,0 +1,166 @@
+// Media queries con tus breakpoints
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $value: map-get($breakpoints, $breakpoint);
+    
+    @if $value == 0 {
+      @content;
+    } @else {
+      @media (min-width: $value) {
+        @content;
+      }
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` no encontrado en $breakpoints";
+  }
+}
+
+// Mixin para container con max-widths
+@mixin make-container($gutter: $grid-gutter-mobile) {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 ($gutter / 2);
+  
+  @each $breakpoint, $container-max-width in $grid-container-max-widths {
+    @include respond-to($breakpoint) {
+      $current-gutter: if($breakpoint == 'sm', $grid-gutter-mobile, $grid-gutter);
+      max-width: $container-max-width;
+      padding: 0 ($current-gutter / 2);
+    }
+  }
+}
+
+// Mixin para row
+@mixin make-row($gutter: $grid-gutter-mobile) {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-$gutter / 2);
+  
+  @include respond-to('md') {
+    margin: 0 (-$grid-gutter / 2);
+  }
+}
+
+// Mixin para columnas
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 auto;
+  width: percentage($size / $columns);
+  padding: 0 ($grid-gutter-mobile / 2);
+  
+  @include respond-to('md') {
+    padding: 0 ($grid-gutter / 2);
+  }
+}
+
+// Mixin para columnas responsivas
+@mixin make-col-responsive($breakpoint, $size, $columns: $grid-columns) {
+  @include respond-to($breakpoint) {
+    flex: 0 0 auto;
+    width: percentage($size / $columns);
+  }
+}
+
+// Mixin para BEM (mantenemos los mismos)
+@mixin block($block) {
+  .#{$block} {
+    @content;
+  }
+}
+
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Position
+@mixin position-absolute($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin position-fixed($top: null, $right: null, $bottom: null, $left: null) {
+  position: fixed;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+// Truncate text
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin truncate-multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Responsive font sizes
+@mixin responsive-font($min-size, $max-size, $min-width: 320px, $max-width: 1200px) {
+  font-size: $min-size;
+  
+  @media (min-width: $min-width) {
+    font-size: calc(#{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-width}) / (#{$max-width} - #{$min-width})));
+  }
+  
+  @media (min-width: $max-width) {
+    font-size: $max-size;
+  }
+}
+
+// Container helper
+@mixin container {
+  @include make-container;
+}
+
+// Row helper
+@mixin row {
+  @include make-row;
+}
+
+// Column helper
+@mixin col($size: false, $columns: $grid-columns) {
+  @if $size {
+    @include make-col($size, $columns);
+  } @else {
+    flex: 1 0 0%;
+    padding: 0 ($grid-gutter-mobile / 2);
+    
+    @include respond-to('md') {
+      padding: 0 ($grid-gutter / 2);
+    }
+  }
+}

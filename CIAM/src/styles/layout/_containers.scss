@@ -1,0 +1,39 @@
+// Componentes de layout comunes
+.section {
+  padding: spacing(6) 0;
+  
+  @include respond-to('md') {
+    padding: spacing(8) 0;
+  }
+}
+
+.card {
+  background: $color-white;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  padding: spacing(4);
+  
+  &--elevated {
+    box-shadow: $shadow-md;
+  }
+  
+  &--bordered {
+    border: 1px solid $color-gray-200;
+    box-shadow: none;
+  }
+}
+
+// Header y footer
+.header {
+  background: $color-white;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+}
+
+.footer {
+  background: $color-gray-100;
+  padding: spacing(6) 0;
+  margin-top: auto;
+}

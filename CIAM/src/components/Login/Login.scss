@@ -1,0 +1,97 @@
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  padding: spacing(4) 0;
+  
+  @include block('login') {
+    
+    @include element('card') {
+      background: var(--bg-primary);
+      padding: spacing(6);
+      border-radius: $border-radius-lg;
+      box-shadow: $shadow-md;
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    @include element('title') {
+      text-align: center;
+      margin-bottom: spacing(6);
+      color: var(--text-primary);
+      font-family: $font-family-heading;
+    }
+    
+    @include element('form') {
+      display: flex;
+      flex-direction: column;
+      gap: spacing(4);
+    }
+    
+    @include element('field') {
+      display: flex;
+      flex-direction: column;
+      gap: spacing(1);
+    }
+    
+    @include element('label') {
+      font-weight: $font-weight-medium;
+      color: var(--text-primary);
+    }
+    
+    @include element('input') {
+      padding: spacing(3);
+      border: 1px solid var(--border-color);
+      border-radius: $border-radius;
+      font-size: $font-size-base;
+      transition: $transition-base;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+      }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+    
+    @include element('button') {
+      background-color: var(--color-primary);
+      color: $color-white;
+      border: none;
+      padding: spacing(3);
+      border-radius: $border-radius;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      transition: $transition-base;
+      margin-top: spacing(2);
+      
+      &:hover:not(:disabled) {
+        background-color: darken($color-primary, 10%);
+        transform: translateY(-1px);
+      }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+    }
+    
+    @include element('error') {
+      background-color: rgba($color-error, 0.1);
+      color: $color-error;
+      padding: spacing(3);
+      border-radius: $border-radius;
+      border: 1px solid rgba($color-error, 0.2);
+      font-size: 0.875rem;
+    }
+  }
+}

@@ -1,0 +1,216 @@
+.header {
+  background-color: var(--bg-primary);
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+  border-bottom: 1px solid var(--border-color);
+
+  @include block('header') {
+    
+    @include element('content') {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: spacing(3) 0;
+      
+      @include respond-to('md') {
+        padding: spacing(4) 0;
+      }
+    }
+
+    // Logo
+    @include element('logo') {
+      flex: 0 0 auto;
+    }
+
+    @include element('title') {
+      font-family: $font-family-heading;
+      font-size: 1.5rem;
+      font-weight: $font-weight-bold;
+      color: var(--color-primary);
+      margin: 0;
+      
+      @include respond-to('md') {
+        font-size: 1.75rem;
+      }
+    }
+
+    // Navegación
+    @include element('nav') {
+      flex: 1 1 auto;
+      
+      @include modifier('desktop') {
+        display: none;
+        
+        @include respond-to('lg') {
+          display: block;
+        }
+      }
+      
+      @include modifier('mobile') {
+        display: block;
+        
+        @include respond-to('lg') {
+          display: none;
+        }
+      }
+    }
+
+    @include element('menu') {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: spacing(4);
+      
+      @include modifier('mobile') {
+        flex-direction: column;
+        gap: spacing(2);
+        padding: spacing(4) 0;
+      }
+    }
+
+    @include element('menu-item') {
+      margin: 0;
+    }
+
+    @include element('menu-link') {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: $font-weight-medium;
+      padding: spacing(2) 0;
+      transition: $transition-base;
+      position: relative;
+      
+      &:hover {
+        color: var(--color-primary);
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--color-primary);
+        transition: $transition-base;
+      }
+      
+      &:hover::after {
+        width: 100%;
+      }
+    }
+
+    // User Info
+    @include element('user') {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    @include element('user-info') {
+      display: flex;
+      align-items: center;
+      gap: spacing(3);
+    }
+
+    @include element('user-name') {
+      font-weight: $font-weight-medium;
+      color: var(--text-secondary);
+      
+      @include respond-to('md') {
+        display: inline-block;
+      }
+    }
+
+    // Botones
+    @include element('login-btn') {
+      background-color: var(--color-primary);
+      color: $color-white;
+      padding: spacing(2) spacing(4);
+      border-radius: $border-radius;
+      text-decoration: none;
+      font-weight: $font-weight-medium;
+      transition: $transition-base;
+      
+      &:hover {
+        background-color: darken($color-primary, 10%);
+        transform: translateY(-1px);
+      }
+    }
+
+    @include element('logout-btn') {
+      background-color: transparent;
+      color: var(--color-error);
+      border: 1px solid var(--color-error);
+      padding: spacing(1) spacing(3);
+      border-radius: $border-radius;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      transition: $transition-base;
+      
+      &:hover {
+        background-color: var(--color-error);
+        color: $color-white;
+      }
+      
+      @include modifier('mobile') {
+        width: 100%;
+        text-align: left;
+        padding: spacing(2) spacing(3);
+        border: none;
+        background: none;
+        
+        &:hover {
+          background-color: var(--color-error);
+          color: $color-white;
+        }
+      }
+    }
+
+    // Mobile Toggle
+    @include element('mobile-toggle') {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: spacing(1);
+      
+      @include respond-to('lg') {
+        display: none;
+      }
+      
+      span {
+        width: 24px;
+        height: 2px;
+        background-color: var(--text-primary);
+        transition: $transition-base;
+      }
+      
+      &:hover span {
+        background-color: var(--color-primary);
+      }
+    }
+
+    // Mobile Menu
+    @include element('mobile-menu') {
+      background-color: var(--bg-primary);
+      border-top: 1px solid var(--border-color);
+      max-height: 0;
+      overflow: hidden;
+      transition: $transition-base;
+      
+      @include modifier('open') {
+        max-height: 300px;
+      }
+      
+      @include respond-to('lg') {
+        display: none;
+      }
+    }
+  }
+}
